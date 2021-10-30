@@ -25,7 +25,7 @@ jobs:
         env:
           webhook_type: 'json-extended'
           webhook_url: 'https://demo-contributors-page.vercel.app/api/contributors'
-          webhook_secret: ''
+          webhook_secret: 'ignorethis'
           data: '{"name":"rodrigojv","createdAt":"2021-10-30T00:22:34.973Z"}'
 #       - name: Show Response
 #         run: echo ${{ steps.myRequest.outputs.response }}
