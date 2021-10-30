@@ -21,11 +21,11 @@ jobs:
     steps:
       - name: Post contributor
         id: myRequest
-        uses: distributhor/workflow-webhook@v2
-        env:
-          webhook_type: 'json-extended'
-          webhook_url: 'https://demo-contributors-page.vercel.app/api/contributors'
-          webhook_secret: 'ignorethis'
+        uses: fjogeleit/http-request-action@master
+        with:
+          
+          url: 'https://demo-contributors-page.vercel.app/api/contributors'
+          method: 'POST'
           data: '{"name":"rodrigojv","createdAt":"2021-10-30T00:22:34.973Z"}'
 #       - name: Show Response
 #         run: echo ${{ steps.myRequest.outputs.response }}
