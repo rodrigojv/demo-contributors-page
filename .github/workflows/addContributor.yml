@@ -25,6 +25,6 @@ jobs:
         with:
           url: 'https://demo-contributors-page.vercel.app/api/contributors'
           method: 'POST'
-          data: "{\"name\":\"${{ github.event.pull_request.actor.login }}\", \"createdAt\":\"${{ github.event.pull_request.createdAt }}\"}"
+          data: "'{\"name\":\"${{ github.event.pull_request.actor.login }}\", \"createdAt\":\"${{ github.event.pull_request.createdAt }}\"}'"
       - name: Show Response
         run: echo ${{ steps.myRequest.outputs.response }}
