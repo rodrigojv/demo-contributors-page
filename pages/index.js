@@ -4,11 +4,16 @@ import useSWR from "swr";
 import { getProfile } from "../lib/api";
 import styles from "../styles/Home.module.css";
 
+import Skeleton from "react-loading-skeleton";
+import GridLoader from "react-spinners/GridLoader";
+import { motion, AnimatePresence } from "framer-motion";
+
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home() {
-  const { data, error } = useSWR("/api/contributors", fetcher);
-  console.log({ data });
+  const { data, error } = useSWR("/api/contributors", fetcher, {
+    refreshInterval: 1000,
+  });
   return (
     <div className={styles.container}>
       <Head>
@@ -18,15 +23,16 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="#">Contributors page</a>
-        </h1>
-
+        <h1 className={styles.title}>Colaboradores</h1>
+        <h2>En tiempo real ⏱</h2>
         <div className={styles.grid}>
-          {data &&
-            data.list.map((row) => (
-              <Card key={row.name} profileName={row.name} />
-            ))}
+          <AnimatePresence>
+            {!data && <GridLoader color="gray" loading={true} />}
+            {data &&
+              data.list.map((row) => (
+                <Card key={row.createdAt} profileName={row.name} />
+              ))}
+          </AnimatePresence>
         </div>
       </main>
 
@@ -46,18 +52,32 @@ export default function Home() {
   );
 }
 
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    x: "100vw",
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { type: "spring", delay: 0.5 },
+  },
+};
+
 function Card({ profileName }) {
-  const { data, error, isLoading } = useSWR(profileName, getProfile);
-  if (isLoading) {
-    return null;
-  }
+  const { data, error } = useSWR(profileName, getProfile);
   if (!data) {
-    return null;
+    return <Skeleton count={2} />;
   }
-  console.log({ data });
   const { avatar_url, name, html_url } = data;
   return (
-    <a href="https://nextjs.org/docs" className={styles.card}>
+    <motion.a
+      href="https://nextjs.org/docs"
+      className={styles.card}
+      variants={itemVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <Image
         className={styles.avatar}
         src={avatar_url}
@@ -73,6 +93,6 @@ function Card({ profileName }) {
           </a>
         </h2>
       </p>
-    </a>
+    </motion.a>
   );
 }
