@@ -20,9 +20,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Post contributor
+        id: myRequest
         uses: fjogeleit/http-request-action@master
         with:
           url: 'https://demo-contributors-page.vercel.app/api/contributors'
           method: 'POST'
-          data: '{"name":"${{ github.event.pull_request.actor.login }}", "createdAt":"${{ github.event.pull_request.createdAt }}"}'
-       
+          data: "{\"name\":\"${{ github.event.pull_request.actor.login }}\", \"createdAt\":\"${{ github.event.pull_request.createdAt }}\"}"
+      - name: Show Response
+        run: echo ${{ steps.myRequest.outputs.response }}
