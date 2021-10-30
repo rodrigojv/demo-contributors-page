@@ -26,6 +26,6 @@ jobs:
           
           url: 'https://demo-contributors-page.vercel.app/api/contributors'
           method: 'POST'
-          data: '{"name":"rodrigojv","createdAt":"2021-10-30T00:22:34.973Z"}'
+          data: "{\"name\":\"rodrigojv\",\"createdAt\":\"2021-10-30T00:22:34.973Z\"}"
 #       - name: Show Response
 #         run: echo ${{ steps.myRequest.outputs.response }}
