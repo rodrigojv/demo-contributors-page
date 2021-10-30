@@ -1,15 +1,31 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
+// const nodeFetch = require("node-fetch");
+const fetch = (url, options) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(url, options));
+console.log(fetch);
+async function run() {
+  try {
+    // contributor  structure
+    let githubName = {
+      //   name: github.context.payload.sender.login,
+      name: "alefq",
+      createdAt: new Date().toISOString(),
+    };
 
-try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput("who-to-greet");
-  console.log(`Hello ${nameToGreet}!`);
-  const time = new Date().toTimeString();
-  core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2);
-  console.log(`The event payload: ${payload}`);
-} catch (error) {
-  core.setFailed(error.message);
+    // send the contributor
+    const response = await fetch(
+      "https://demo-contributors-page.vercel.app/api/contributors",
+      {
+        method: "POST",
+        body: JSON.stringify(githubName),
+      }
+    );
+    const data = await response.json();
+    core.setOutput("response was", data);
+  } catch (error) {
+    core.setFailed(error.message);
+  }
 }
+
+run();
