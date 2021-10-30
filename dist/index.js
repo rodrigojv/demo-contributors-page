@@ -11767,16 +11767,14 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(2319);
 const github = __nccwpck_require__(5880);
-// const nodeFetch = require("node-fetch");
 const fetch = (url, options) =>
   __nccwpck_require__.e(/* import() */ 661).then(__nccwpck_require__.bind(__nccwpck_require__, 3661)).then(({ default: fetch }) => fetch(url, options));
-console.log(fetch);
+
 async function run() {
   try {
-    // contributor  structure
+    // contributor structure
     let githubName = {
-      //   name: github.context.payload.sender.login,
-      name: "alefq",
+      name: github.context.payload.sender.login,
       createdAt: new Date().toISOString(),
     };
 
@@ -11789,7 +11787,7 @@ async function run() {
       }
     );
     const data = await response.json();
-    core.setOutput("response was", data);
+    core.setOutput("response", data);
   } catch (error) {
     core.setFailed(error.message);
   }

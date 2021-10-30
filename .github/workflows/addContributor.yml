@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Post contributor
 
 # Controls when the workflow will run
 on:
@@ -19,19 +19,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # - name: Post contributor
-      #   id: myRequest
-      #   uses: fjogeleit/http-request-action@master
-      #   with:
-
-      #     url: 'https://demo-contributors-page.vercel.app/api/contributors'
-      #     method: 'POST'
-      #     data: "{\"name\":\"rodrigojv\",\"createdAt\":\"2021-10-30T00:22:34.973Z\"}"
-
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Hello world action step
+      - name: Post contributor name to web app
         uses: ./ # Uses an action in the root directory
-        id: hello
-        with:
-          who-to-greet: "Mona the Octocat"
