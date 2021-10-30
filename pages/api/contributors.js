@@ -39,12 +39,17 @@ async function get(req, res) {
 async function add(req, res) {
   try {
     let { db } = await connectToDatabase();
-    await db.collection("github_names").insertOne(JSON.parse(req.body));
+    const body = req.body;
+    console.log({ body });
+    const parsedBody = JSON.parse(body);
+    console.log({ parsedBody });
+    await db.collection("github_names").insertOne(parsedBody);
     return res.json({
       message: "added successfully",
       success: true,
     });
   } catch (error) {
+    console.error(error);
     return res.json({
       message: new Error(error).message,
       success: false,
