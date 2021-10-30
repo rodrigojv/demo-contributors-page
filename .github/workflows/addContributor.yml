@@ -5,7 +5,7 @@ name: CI
 # Controls when the workflow will run
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -19,13 +19,19 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Post contributor
-        id: myRequest
-        uses: fjogeleit/http-request-action@master
+      # - name: Post contributor
+      #   id: myRequest
+      #   uses: fjogeleit/http-request-action@master
+      #   with:
+
+      #     url: 'https://demo-contributors-page.vercel.app/api/contributors'
+      #     method: 'POST'
+      #     data: "{\"name\":\"rodrigojv\",\"createdAt\":\"2021-10-30T00:22:34.973Z\"}"
+
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Hello world action step
+        uses: ./ # Uses an action in the root directory
+        id: hello
         with:
-          
-          url: 'https://demo-contributors-page.vercel.app/api/contributors'
-          method: 'POST'
-          data: "{\"name\":\"rodrigojv\",\"createdAt\":\"2021-10-30T00:22:34.973Z\"}"
-#       - name: Show Response
-#         run: echo ${{ steps.myRequest.outputs.response }}
+          who-to-greet: "Mona the Octocat"
