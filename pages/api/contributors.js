@@ -21,7 +21,7 @@ async function get(req, res) {
     let names = await db
       .collection("github_names")
       .find({})
-      .sort({ published: -1 })
+      .sort({ createdAt: -1 })
       .toArray();
     return res.json({
       list: JSON.parse(JSON.stringify(names)),
