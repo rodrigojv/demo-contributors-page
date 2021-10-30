@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import useSWR from "swr";
-import { getProfile } from "../lib/api";
+import { getProfile, getRandomGif } from "../lib/api";
 import styles from "../styles/Home.module.css";
 
 import Skeleton from "react-loading-skeleton";
@@ -66,6 +66,8 @@ const itemVariants = {
 
 function Card({ profileName }) {
   const { data, error } = useSWR(profileName, getProfile);
+  const { data: gifUrl } = useSWR([profileName], () => getRandomGif("excited"));
+
   if (!data) {
     return <Skeleton count={2} />;
   }
@@ -82,8 +84,8 @@ function Card({ profileName }) {
         className={styles.avatar}
         src={avatar_url}
         alt={`Avatar for ${name}`}
-        width={150}
-        height={150}
+        width={100}
+        height={100}
       />
       <p>
         Gracias{" "}
@@ -93,6 +95,9 @@ function Card({ profileName }) {
           </a>
         </h2>
       </p>
+      {gifUrl && (
+        <Image src={gifUrl} alt={`Random gif`} width={150} height={150} />
+      )}
     </motion.a>
   );
 }
