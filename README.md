@@ -1,14 +1,11 @@
-## Getting Started
+## Github Actions
 
-First, run the development server:
+## Agenda
 
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [¿Qué son Github Actions?](https://github.com/features/actions)
+- [Ejemplo de CI](git@github.com:rodrigojv/spring-boot-test-github-actions.git), build y tests
+- [Ejemplo en producción de deploy a AWS](https://github.com/Asepy/fishswarm-frontend)
+- Demo de custom action
 
 ## Collaborators
 
