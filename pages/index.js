@@ -73,8 +73,7 @@ function Card({ profileName }) {
   }
   const { avatar_url, name, html_url } = data;
   return (
-    <motion.a
-      href="https://nextjs.org/docs"
+    <motion.div
       className={styles.card}
       variants={itemVariants}
       initial="hidden"
@@ -96,8 +95,8 @@ function Card({ profileName }) {
         </h2>
       </p>
       {gifUrl && (
-        <Image src={gifUrl} alt={`Random gif`} width={150} height={150} />
+        <Image src={gifUrl} alt={`Random gif`} width={180} height={180} />
       )}
-    </motion.a>
+    </motion.div>
   );
 }
