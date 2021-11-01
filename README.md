@@ -9,6 +9,6 @@
 
 ## Collaborators
 
-- TODO
+- Rodrigo
 - TODO
 - TODO
