@@ -9,6 +9,7 @@
 
 ## Collaborators
 
+- Leti
 - Rodrigo
 - TODO
 - TODO
