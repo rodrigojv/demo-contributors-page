@@ -9,6 +9,9 @@
 
 ## Collaborators
 
+- Leti
+- Rodrigo
 - TODO
 - TODO
 - ncanatta
+- Dale dale ceeee
