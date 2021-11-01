@@ -10,5 +10,7 @@
 ## Collaborators
 
 - Leti
+- Rodrigo
 - TODO
 - TODO
+- Dale dale ceeee
