@@ -9,6 +9,6 @@
 
 ## Collaborators
 
-- TODO
+- Leti
 - TODO
 - TODO
