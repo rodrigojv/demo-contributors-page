@@ -9,6 +9,10 @@
 
 ## Collaborators
 
+- Leti
+- Rodrigo
 - TODO
-- TODO
+- Jorge
 - María José Rejala
+- ncanatta
+- Dale dale ceeee
